@@ -91,9 +91,36 @@ const rotateArray = function(nums, k) {
 
 At first I didn't understood reversing the array three times could rotate it but after writing down on my paper some examples it made a lot of sense!
 
+### Why modulo works?
+
 Consider `[1,2,3,4,5]` our input and `2` the number of times to rotate
 
-first, reverse the whole array
+before reversing, we update `k` to be the result of `k % array.length`. This is something that clicked my mind when I noticed that you could avoid unnecessary rotations by ensuring `k` fits the array's length.
+
+Let's say we want to rotate an array of length 5 seven times, so `array.length = 5 and k = 7`.
+After a complete cycle (i.e traversing the whole array) you must start from the beginning again, after rotating 5 (array.length) times it will go back to its original state, then it will be rotated just two times.
+
+a more visual example bellow
+
+---
+
+array = [1, 2, 3, 4, 5]\
+array.length = 5\
+number of rotations = 7
+
+1. Step 1: `[5, 1, 2, 3, 4]`
+2. Step 2: `[4, 5, 1, 2, 3]`
+3. Step 3: `[3, 4, 5, 1, 2]`
+4. Step 4: `[2, 3, 4, 5, 1]`
+5. Step 5: `[1, 2, 3, 4, 5]` (full cycle, back to original)
+6. Step 6: `[5, 1, 2, 3, 4]`
+7. Step 7: `[4, 5, 1, 2, 3]`
+
+---
+
+### Reversing
+
+First, reverse the whole array
 
 `[5,4,3,2,1]`
 
