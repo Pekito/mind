@@ -70,14 +70,17 @@ To be honest, I couldn't figure out this solution on my own, I had to search how
 ```js
 const rotateArray = function(nums, k) {
 
-  // reverse helper function
-  function reverse(arr, start, end) {
-    while (start < end) {
-      [arr[start], arr[end]] = [arr[end], arr[start]];
-      start++;
-      end--;
+    function reverse(arr, startIndex, endIndex) {
+        while (startIndex < endIndex) {
+            const temp = arr[startIndex];
+
+            arr[startIndex] = arr[endIndex];
+            arr[endIndex] = temp;
+
+            startIndex++;
+            endIndex--;
+        }
     }
-  }
 
   k %= nums.length;
 
